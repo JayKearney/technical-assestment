@@ -1,0 +1,6 @@
+apiVersion: v2
+name: java-application
+description: A simple Helm chart for a Java app
+version: 0.1.0
+appVersion: "1.0.0"
+type: application
