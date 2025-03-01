@@ -1,0 +1,23 @@
+replicaCount: 2  # Runs 2 copies of the app
+
+image:
+  repository: example/java-application
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: "500m"    # Maximum 0.5 CPU core
+    memory: "512Mi" # Maximum 512 MB RAM
+  requests:
+    cpu: "250m"    # Requests 0.25 CPU core
+    memory: "256Mi" # Requests 256 MB RAM
+
+autoscaling:
+  enabled: true
+  minReplicas: 2   # At least 2 replicas
+  maxReplicas: 5   # Up to 5 replicas
+  targetCPUUtilizationPercentage: 75  # Scale up when CPU > 75%
