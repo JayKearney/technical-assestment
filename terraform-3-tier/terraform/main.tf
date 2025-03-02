@@ -5,7 +5,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "root/terraform.tfstate"
     region = "us-east-1"
   }
@@ -15,7 +15,7 @@ terraform {
 data "terraform_remote_state" "network" {
   backend = "s3"
   config = {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "network/terraform.tfstate"
     region = "us-east-1"
   }
@@ -25,7 +25,7 @@ data "terraform_remote_state" "network" {
 data "terraform_remote_state" "database" {
   backend = "s3"
   config = {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "database/terraform.tfstate"
     region = "us-east-1"
   }
@@ -35,7 +35,7 @@ data "terraform_remote_state" "database" {
 data "terraform_remote_state" "application" {
   backend = "s3"
   config = {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "application/terraform.tfstate"
     region = "us-east-1"
   }
@@ -45,7 +45,7 @@ data "terraform_remote_state" "application" {
 data "terraform_remote_state" "web" {
   backend = "s3"
   config = {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "web/terraform.tfstate"
     region = "us-east-1"
   }

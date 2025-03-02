@@ -5,7 +5,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "network/terraform.tfstate"
     region = "us-east-1"
   }
@@ -24,15 +24,17 @@ resource "aws_vpc" "main" {
 
 # Public subnets - Web Tier
 resource "aws_subnet" "public" {
-  count             = length(var.public_subnet_cidrs)
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.public_subnet_cidrs[count.index]
-  availability_zone = var.availability_zones[count.index]
+  count                 = length(var.public_subnet_cidrs)
+  vpc_id                = aws_vpc.main.id
+  cidr_block            = var.public_subnet_cidrs[count.index]
+  availability_zone     = var.availability_zones[count.index]
+  map_public_ip_on_launch = true  # This enables public IPs
 
   tags = {
     Name = "${var.project_name}-public-subnet-${count.index + 1}"
   }
 }
+
 
 # Private subnets - App Tier
 resource "aws_subnet" "private_app" {

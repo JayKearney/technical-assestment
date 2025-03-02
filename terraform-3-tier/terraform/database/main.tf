@@ -5,7 +5,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "tf-state-bucket"
+    bucket = "project-tf-state-bucket-jk"
     key    = "database/terraform.tfstate"
     region = "us-east-1"
   }
@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "postgresql" {
 resource "aws_db_instance" "postgresql" {
   identifier             = "${var.project_name}-postgresql"
   engine                 = "postgres"
-  engine_version         = "14.7"
+  engine_version         = "12.19"
   instance_class         = var.db_instance_class
   allocated_storage      = var.db_allocated_storage
   storage_type           = "gp2"
